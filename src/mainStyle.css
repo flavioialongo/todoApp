@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+body{
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    background-color: #FBF7DE;
+    font-size: 1.5rem;
+}
+ul{
+    padding: 0;
+}
+.menu:hover{
+    cursor: pointer;
+}
+.sections i{
+    color: black;
+    font-size: 2.5rem;
+    background-color: transparent;
+    border-radius: 60px;
+    padding: 10%;
+    transition-duration: 0.4s;
+}
+
+.sections i:hover{
+    transform: translateY(-5px);
+    background-color: #ECB390;
+    cursor: pointer;
+}
+.navbar{
+    display: grid;
+    grid-template-columns: 10% 70% 20%;
+    justify-items: center;
+    align-items: center;
+    padding: 0;
+}
+/* Navigation bar style */
+.menu{
+    text-align: center;
+    grid-column: 1;
+}
+.pageTitle{
+    grid-column: 2;
+}
+
+
+/* Main Page style */
+
+.mainDiv{
+    display: grid;
+    grid-template-columns: 10% 70% 20%;
+    height: 70%;
+}
+
+.todoScreen{
+    grid-column-start: 2;
+    display: grid;
+    grid-template-rows: 1fr 4fr;
+    align-self: center;
+    justify-self: center;
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+    background-color: white;
+    border-radius: 60px;
+}
+.sections{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+}
+
+.sections ul{
+    margin-top: 32.160px;
+}
+.sections li{
+    text-align: center;
+    list-style: none;
+    margin-bottom: 50%;
+}
+
+.screenNav{
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    border-bottom: 1px solid rgb(215, 215, 215);
+    grid-template-columns: 60% 10% 10% 10% 10%;
+}
+.todoTitle{
+    justify-self: left;
+    margin-left: 7%;
+}
+.day, .week, .month, .year{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    border-bottom: 3px transparent solid;
+    transition-duration: 0.4s;
+}
+.day:hover, .week:hover,.month:hover,.year:hover{
+    border-bottom: 3px #ECB390 solid;
+    transform: translateY(2px);
+    cursor: pointer;
+}
+.screenNav .day,.week,.month,.year{
+    width: 100%;
+}
+
+
+.content{
+    font-size: 3rem;
+    height: 55%;
+    color:#898AA6;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
