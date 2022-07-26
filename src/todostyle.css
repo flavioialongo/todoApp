@@ -1,12 +1,23 @@
-
 .todo{
-    display: flex;
-    justify-content: space-between;
+    text-align: start;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 2fr 0.5fr;
     margin: 0 3% 0 3.25%;
     
 }
 .todoMain{
+    width: 70vw;
+    color: black;
     border-bottom: 1px solid rgb(215, 215, 215);
+}
+.desc{
+    color:grey;
+    grid-column: auto;
+}
+.status{
+    justify-self: end;
+    grid-row-start: 2;
 }
 .todoMain h1{
     margin: 0 0 1px 3%;
