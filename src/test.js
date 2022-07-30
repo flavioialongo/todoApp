@@ -1,4 +1,4 @@
-[{
+var data = [{
     "id": 1,
     "task": "Give dog a bath",
     "description": "clean asdhaisdhgasgldkahs dglkagsd laksdgalksdgalksdgalkshdglaskdh galksdhgalksdgalskdgalksdgalskdga sdlkasgdaklsdgaskldgkasdgaksdga sdklasdgaksdgaksdgaklsgdkasgdlkasdg asgdlkasdgahskldgalksdgalskdgaskld galksdgaskdgaslkg"
@@ -40,4 +40,4 @@
     "task": "Bestiaaaaa",
     "description": "idk"
   }]
- 
+ export default data;

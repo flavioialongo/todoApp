@@ -10,12 +10,14 @@ function Todo(props) {
         <h3>{props.desc}</h3>
       </div>
       <div className="status">
-        <h3>done</h3>
+        <button onClick={()=>{
+          console.log(props.id)
+          props.removeTodo(props.id)
+          }}>done</button>
       </div>
     </div>
      
     
     </div>
 }
-
 export default Todo;
