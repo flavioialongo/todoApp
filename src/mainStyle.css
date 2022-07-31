@@ -1,124 +1,139 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
-body{
-    font-family: 'Roboto', sans-serif;
-    margin: 0;
-    background-color: #FBF7DE;
-    font-size: 1.5rem;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-form{
-    margin:0;
+body {
+  background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
+  color: white;
+  font-family: "Poppins", sans-serif;
+  min-height: 100vh;
 }
-ul{
-    padding: 0;
+header {
+  font-size: 2rem;
 }
-#root{
-    height: 100%;
+input:focus {
+  outline: none ! important;
+  }
+header,
+form {
+  min-height: 20vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.menu:hover{
-    cursor: pointer;
+form input,
+form button {
+  padding: 0.5rem;
+  font-size: 2rem;
+  border: none;
+  background: white;
 }
-.sections i{
-    color: black;
-    font-size: 2.5rem;
-    background-color: transparent;
-    border-radius: 60px;
-    padding: 10%;
-    transition-duration: 0.4s;
+form button {
+  color: #ff6f47;
+  background: #f7fffe;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
-
-.sections i:hover{
-    transform: translateY(-5px);
-    background-color: #ECB390;
-    cursor: pointer;
+form button:hover {
+  background: #ff6f47;
+  color: white;
 }
-.navbar{
-    display: grid;
-    grid-template-columns: 10% 70% 20%;
-    justify-items: center;
-    align-items: center;
-    padding: 0;
-}
-/* Navigation bar style */
-.menu{
-    text-align: center;
-    grid-column: 1;
-}
-.pageTitle{
-    grid-column: 2;
+.todo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-
-/* Main Page style */
-
-.mainDiv{
-    display: grid;
-    grid-template-columns: 10% 70% 20%;
-    height: 70%;
+.todo-list {
+  min-width: 30%;
+  list-style: none;
 }
 
-.todoScreen{
-    grid-column-start: 2;
-    display: grid;
-    grid-template-rows: 1fr 4fr;
-    align-self: center;
-    justify-self: center;
-    overflow: hidden;
-    height: 100%;
-    width: 100%;
-    background-color: white;
-    border-radius: 60px;
+.todo {
+  margin: 0.5rem;
+  background: white;
+  font-size: 1.5rem;
+  color: black;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 1s ease;
 }
-.sections{
-    display: flex;
-    flex-direction: column;
-    align-content: center;
-    justify-content: center;
+.filter-todo {
+  padding: 1rem;
+}
+.todo li {
+  flex: 1;
 }
 
-.sections ul{
-    margin-top: 32.160px;
+.trash-btn{
+  background: #ff6f47;
+  color: white;
+  border: none;
+  padding: 1rem;
+  cursor: pointer;
+  font-size: 1rem;
 }
-.sections li{
-    text-align: center;
-    list-style: none;
-    margin-bottom: 50%;
+.complete-btn {
+  background: rgb(11, 212, 162);
+  color: white;
+  border: none;
+  padding: 1rem;
+  cursor: pointer;
+  font-size: 1rem;
 }
-
-.screenNav{
-    display: grid;
-    align-items: center;
-    justify-items: center;
-    border-bottom: 1px solid rgb(215, 215, 215);
-    grid-template-columns: 60% 10% 10% 10% 10%;
-}
-.todoTitle{
-    justify-self: left;
-    margin-left: 7%;
-}
-.day, .week, .month, .year{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    border-bottom: 3px transparent solid;
-    transition-duration: 0.4s;
-}
-.day:hover, .week:hover,.month:hover,.year:hover{
-    border-bottom: 3px #ECB390 solid;
-    transform: translateY(2px);
-    cursor: pointer;
-}
-.screenNav .day,.week,.month,.year{
-    width: 100%;
+.todo-item {
+  padding: 0rem 0.5rem;
 }
 
+.fa-trash,
+.fa-check {
+  pointer-events: none;
+}
 
-.content{
-    font-size: 3rem;
-    height: 55%;
-    color:#898AA6;
-    display: flex;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
+.fall {
+  transform: translateY(10rem) rotateZ(20deg);
+  opacity: 0;
+}
+
+.completed {
+  text-decoration: line-through;
+  opacity: 0.5;
+}
+
+/*CUSTOM SELECTOR */
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  outline: 0;
+  box-shadow: none;
+  border: 0 !important;
+  background-image: none;
+}
+
+/* Custom Select */
+.select {
+  margin: 1rem;
+  position: relative;
+  overflow: hidden;
+}
+select {
+  color: black;
+  font-family: "Poppins", sans-serif;
+  cursor: pointer;
+  width: 12rem;
+}
+/* Arrow */
+.select::after {
+  content: "\25BC";
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 1rem;
+  background: #ff6f47;
+  cursor: pointer;
+  pointer-events: none;
 }

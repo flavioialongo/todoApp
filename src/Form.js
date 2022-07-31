@@ -1,16 +1,36 @@
 import './formStyle.css'
-function Form(){
+import {useState} from "react"
+function Form(props){
+
+    const [inputText, setText] = useState("")
+    function handleChange(event){
+        setText(event.target.value)
+    }
+    
+    function handleSubmit(event){
+      event.preventDefault()
+      setText("");
+      props.setList([...props.todoList, event.target[0].value])
+    }
+
+
     return(
-<div className = "form">
-    <form>
-        <label>
-        <input placeholder='inserisci ToDo' type="text" name="titolo" />
-            </label>
-        <label>
-            <input type="text" placeholder="description" name="description"/>
-        </label>
-        <input type="submit" value="Submit" />
+        <form onSubmit={handleSubmit}>
+      <input type="text" className="todo-input" value={inputText} onChange= {handleChange}/>
+      <button className="todo-button" type="submit">
+        <i className="fas fa-plus-square"></i>
+      </button>
+      <div className="select">
+        <select name="todos" className="filter-todo">
+          <option value="all">All</option>
+          <option value="completed">Completed</option>
+          <option value="uncompleted">Uncompleted</option>
+        </select>
+      </div>
     </form>
-</div>)
+
+
+
+    );
 }
 export default Form;

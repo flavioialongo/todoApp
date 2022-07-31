@@ -3,21 +3,12 @@ import "./todostyle.css"
 
 
 function Todo(props) {
-  return <div className="todoMain">
-      <h1>{props.title}</h1>
-    <div className="todo">
-      <div className="desc">
-        <h3>{props.desc}</h3>
-      </div>
-      <div className="status">
-        <button onClick={()=>{
-          console.log(props.id)
-          props.removeTodo(props.id)
-          }}>done</button>
-      </div>
-    </div>
-     
-    
+  return <div className="todo">
+      <li className="todo-item">{props.title}</li>
+      <button className="complete-btn"><i className="fas fa-check"></i></button>
+      <button className="trash-btn" onClick={()=>props.removeTodo(props.index)}><i className="fas fa-trash"></i></button>
+      
+      
     </div>
 }
 export default Todo;
