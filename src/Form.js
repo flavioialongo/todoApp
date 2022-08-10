@@ -13,7 +13,8 @@ function Form(props){
       event.preventDefault()
       if(!(event.target[0].value==="")){
         setText("");
-        props.setList([...props.todoList, event.target[0].value])
+        let len = props.todoList.length
+        props.setList([...props.todoList, {"id":len+1, "task": event.target[0].value, "completed":false}])
       }
     }
 

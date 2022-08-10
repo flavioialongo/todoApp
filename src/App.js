@@ -8,12 +8,13 @@ function App(){
     const [toDoList, setList] = useState(data);
     const [selection, setSelection] = useState("all");
     const [completedTodos, setCompletedTodos] = useState([]);
-    const [uncompletedTodos, setUncompletedTodos] = useState([]);
+    const [uncompletedTodos, setUncompletedTodos]=useState(data);
+
     return(
     <div className="App">       
         <header>your todo</header>
         <Form setSelection = {setSelection} setList={setList} todoList={toDoList}/>
-        <ToDoList uncompletedTodos={uncompletedTodos} setUncompletedTodos={setUncompletedTodos} completedTodos = {completedTodos} setCompletedTodos = {setCompletedTodos} selection = {selection} todoList={toDoList} setList={setList}/>
+        <ToDoList uncompletedTodos={uncompletedTodos} completedTodos = {completedTodos} setCompletedTodos = {setCompletedTodos} setUncompletedTodos = {setUncompletedTodos} selection = {selection} todoList={toDoList} setList={setList}/>
     </div>
     );
 }
