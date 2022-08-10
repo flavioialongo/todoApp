@@ -1,13 +1,23 @@
 function Todo(props) {
+  function removeTodo(){
+    props.setList(props.todoList.filter((x)=>x.id!==props.todo.id));
+  }
+  function addComplete(){
+   props.setList(props.todoList.map((x)=>{
+    if(x.id === props.todo.id){
+      return {
+        ...x, completed: !x.completed,
+      }
+    }else{
+      return x;
+    }
+   }));
+  }
   return <div className="todo">
-      <li className="todo-item" style={{textDecoration: props.completed ? "line-through" : "none"}}>{props.title}</li>
-      <button className="complete-btn" onClick={
-        ()=>{
-          props.addComplete(props.index);
-        }
-        }
-        ><i className={props.selection !== "completed" ? "fas fa-check" : "fas fa-arrow-left"}></i></button>
-      <button className="trash-btn" onClick={()=>props.removeTodo(props.index)}><i className="fas fa-trash"></i></button>
+      <li className={props.todo.completed ? "todo-item completed" : "todo-item"}>{props.title}</li>
+      <button className="complete-btn" onClick={()=>addComplete()}
+        ><i className={props.todo.completed ? "fas fa-arrow-left" : "fas fa-check"}></i></button>
+      <button className="trash-btn" onClick={()=>removeTodo()}><i className="fas fa-trash"></i></button>
     </div>
 }
 export default Todo;
