@@ -5,11 +5,13 @@ import ToDoList from "./ToDoList";
 import { useEffect, useState } from "react";
 import "./mainStyle.css"
 function App(){
-    const [todoList, setList] = useState(data);
+    const [todoList, setList] = useState([]);
     const [selection, setSelection] = useState("all");
-    const [filteredTodo, setFilteredTodo]=useState(data)
+    const [filteredTodo, setFilteredTodo]=useState([])
 
-    function filtered(){
+
+
+    function filter(){
         switch(selection){
             case "completed":
                 setFilteredTodo(todoList.filter(x=>x.completed===true));
@@ -23,7 +25,30 @@ function App(){
             }
     }
 
-    useEffect(()=>filtered(), [todoList,selection]);
+ 
+    useEffect(()=>getItems(), []);
+   
+    useEffect(()=>{
+        filter();
+        saveItems();
+    }, [todoList,selection]);
+
+    function saveItems(){
+        localStorage.setItem("todos", JSON.stringify(todoList));
+    }
+
+    function getItems(){
+        if(localStorage.getItem("todos") === null){
+            console.log("aio")
+            localStorage.setItem("todos", JSON.stringify([]));
+        }else{
+            let res = JSON.parse(localStorage.getItem("todos"));
+            setList(res);
+        }
+        
+    }
+
+    
 
     return(
     <div className="App">       
