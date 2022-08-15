@@ -8,7 +8,7 @@ function ToDoList(props){
                 {props.filteredTodo.map((todo)=>{
                         return (
                             <Todo 
-                             key={todo.id}
+                             key={todo._id}
                              title={todo.task} 
                              setList = {props.setList} 
                              todoList = {props.todoList} 

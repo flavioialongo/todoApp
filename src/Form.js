@@ -1,6 +1,6 @@
-
+import React from 'react';
 import {useState} from "react"
-
+import axios from "axios"
 function Form(props){
 
     const [inputText, setText] = useState("")
@@ -13,10 +13,18 @@ function Form(props){
       event.preventDefault()
       if(!(event.target[0].value==="")){
         setText("");
-        let len = props.todoList.length
-        props.setList([...props.todoList, {"id":len+1, "task": event.target[0].value, "completed":false}])
-      }
-    }
+
+        axios.post("http://localhost:4000/todo/add",
+       {task: event.target[0].value, completed: false,}
+       ).then(res=>{
+        axios.get("http://localhost:4000/todo/")
+        .then(resp=>{props.setList(resp.data)
+        console.log(resp.data)})
+      }).catch(err=>console.log("ERRORE: ", err.response.data));
+    
+        
+      } 
+  }
 
     return(
         <form onSubmit={handleSubmit}>
