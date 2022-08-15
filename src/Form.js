@@ -18,8 +18,7 @@ function Form(props){
        {task: event.target[0].value, completed: false,}
        ).then(res=>{
         axios.get("http://localhost:4000/todo/")
-        .then(resp=>{props.setList(resp.data)
-        console.log(resp.data)})
+        .then(resp=>{props.setList(resp.data)})
       }).catch(err=>console.log("ERRORE: ", err.response.data));
     
         

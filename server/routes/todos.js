@@ -17,7 +17,6 @@ router.route("/add").post((req,res)=>{
 router.route("/update/:id").post((req,res)=>{
     Todo.findById(req.params.id)
     .then((todo)=>{
-        console.log(todo)
         todo.task=req.body.task,
         todo.completed = req.body.completed
         todo.save().then(()=>res.json("Todo updated!")).catch(err=>console.log(err))
