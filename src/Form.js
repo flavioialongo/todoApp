@@ -13,7 +13,6 @@ function Form(props){
       event.preventDefault()
       if(!(event.target[0].value==="")){
         setText("");
-
         axios.post("http://localhost:4000/todo/add",
        {task: event.target[0].value, completed: false,}
        ).then(res=>{

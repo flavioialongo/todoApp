@@ -4,17 +4,38 @@ const cors = require("cors")
 const port = 4000; 
 const mongoose = require("mongoose")
 require('dotenv').config()
-const db_uri = process.env.DB_URI;
-
 const todoRouter = require("./routes/todos")
+const cookieParser = require("cookie-parser");
+const sessions = require('express-session');
+
 app.use(cors())
 app.use(express.json())
-
-mongoose.connect(db_uri).catch(err=>console.log(err));
 app.use("/todo", todoRouter);
+app.use(cookieParser());
+const oneDay = 1000*60*60*24;
+app.use(sessions({
+  secret: process.env.SESSION_KEY,
+  saveUninitialized:true,
+  cookie: { maxAge: oneDay },
+  resave: false
+}));
 
-app.get('/express_backend', (req, res) => { //Line 9
-    res.send({ express: 'YOUR EXPRESS BACKEND IS CONNECTED TO REACT' }); //Line 10
-  });
+
+
+
+
+const db_uri = process.env.DB_URI;
+mongoose.connect(db_uri).catch(err=>console.log(err));
+
+
+
+
+
+
+
+
+
+
+
 
 app.listen(port, ()=>console.log("express is running on port: ", port))

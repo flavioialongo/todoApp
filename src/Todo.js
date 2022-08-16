@@ -3,22 +3,22 @@ import axios from "axios"
 function Todo(props) {
   function removeTodo(id){
     const uri = "http://localhost:4000/todo/"+id;
-    props.setList(props.todoList.filter(x=>x._id!==props.todo._id))
-    axios.delete(uri);
+    
+    axios.delete(uri).then(()=>props.setList(props.todoList.filter(x=>x._id!==props.todo._id)));
   }
   function addComplete(id){
     const uri = "http://localhost:4000/todo/update/"+id;
-    props.setList(props.todoList.map(x=>{
+    
+    axios.post(uri, {
+      task: props.todo.task,
+      completed: !(props.todo.completed)
+    }).then(()=>props.setList(props.todoList.map(x=>{
       if(x._id===id){
         return {...x, completed: !x.completed}
       }else{
         return x;
       }
-    }));
-    axios.post(uri, {
-      task: props.todo.task,
-      completed: !(props.todo.completed)
-    });
+    })));
   }
   return <div className="todo">
       <li className={props.todo.completed ? "todo-item completed" : "todo-item"}>{props.title}</li>
