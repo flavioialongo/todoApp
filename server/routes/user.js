@@ -1,19 +1,15 @@
 const router = require("express").Router()
-const User = require("../models/user.model")
+let User = require("../models/user.model")
 
 router.route("/register").post((req,res)=>{
-    const {first_name, last_name, email, password} = req.body;
-    const res = User.exists({email: email})
-    if(!res){
-        let newUser = new User({
-            first_name: first_name,
-            last_name: last_name,
-            email: email, 
-            password: password,
-        })
-        newUser.save().then(()=>res.json("User Added!"))
-    }else{
-        res.json("User already exists!")
-    }
+    console.log(req.body)
+    const newUser = new User({
+        first_name : req.body.first_name,
+        last_name : req.body.last_name,
+        email : req.body.email,
+        password : req.body.password,
+    })
+    newUser.save().then(()=>res.json("User Added!")).catch(err=>console.log(err));
 });
 
+module.exports = router;
