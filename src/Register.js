@@ -1,6 +1,6 @@
 import axios from "axios"
 import React, { useState } from "react"
-import { useNavigate } from "react-router-dom";
+import { useNavigate} from "react-router-dom";
 
 function Register(props){
     const [firstName, setFirstName] = useState("")
@@ -9,7 +9,6 @@ function Register(props){
     const [password, setPassword] = useState("")
 
     let navigate = useNavigate();
-
     function handleChange(event){
         let selector = event.target.name
         switch(selector){
@@ -47,12 +46,11 @@ function Register(props){
             setEmail("");
             setPassword("");
         axios.post("http://localhost:4000/user/register", user).then((res)=>{
-                navigate("/")
+                navigate("/", {replace:true});
         }).catch(err=>{
             alert(err.response.data)
         });
     }
-    /// POSSO CREARE VARIABILI H3 CHE DANNO IL MESSAGGIO
     return(
         <div>
             <header>Register</header>

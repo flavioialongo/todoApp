@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate} from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 
@@ -10,7 +10,6 @@ function Login(){
     const [password, setPassword] = useState("")
     
     let navigate = useNavigate();
-
     function handleChange(event){
         let selector = event.target.name
         switch(selector){
@@ -35,7 +34,7 @@ function Login(){
         axios.post("http://localhost:4000/user/login", user).then((res)=>{
             const token = res.data;
             if(token!=null){
-                navigate("/home", {state: {headers:{"auth-token":token}}})
+                navigate("/home", {replace: true, state: {headers:{"auth-token":token}}})
             }else{
                 navigate("/err")
             }

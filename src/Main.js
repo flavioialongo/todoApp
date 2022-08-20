@@ -5,24 +5,27 @@ import { useEffect, useState } from "react";
 import axios from "axios"
 import {useNavigate, useLocation} from "react-router-dom"
 
-function Main(props){
+function Main(){
 
     const [todoList, setList] = useState([]);
     const [selection, setSelection] = useState("all");
     const [filteredTodo, setFilteredTodo]=useState([]);
-
     const [name, setName] = useState("")
-    const {state}=useLocation();
-    let navigate = useNavigate()
+
+
+    const location = useLocation();
+    const state = location.state
+    const navigate = useNavigate()
+
     useEffect(()=>{
-    axios.get("http://localhost:4000/home/", {headers:(state!=null) ? state.headers : null})
+        console.log(state)
+        axios.get("http://localhost:4000/home/", {headers:(state!=null) ? state.headers : null})
     .then(res=>{
         setList(res.data.todoList)
         setName(res.data.name)}).catch(err=>{
         navigate("/err", {state: {err: err.response.data}})
     })
     }, []);
-
 
 useEffect(()=>{
     filter();
@@ -42,7 +45,8 @@ function filter(){
         }
 }
 function logout(){
-    navigate("/");
+    navigate(".", {replace:true});
+    navigate("/", {replace:true});
 }
 
 
