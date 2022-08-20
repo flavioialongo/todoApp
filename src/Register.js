@@ -45,7 +45,7 @@ function Register(props){
             setLastName("");
             setEmail("");
             setPassword("");
-        axios.post("http://localhost:4000/user/register", user).then((res)=>{
+        axios.post("/user/register", user).then((res)=>{
                 navigate("/", {replace:true});
         }).catch(err=>{
             alert(err.response.data)

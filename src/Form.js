@@ -17,15 +17,14 @@ function Form(props){
         let taskClear = event.target[0].value.trim()
 
         //post to add todo
-        axios.post("http://localhost:4000/home/add",
+        axios.post("/home/add",
        {task: taskClear, completed: false,}, {headers:props.auth_header}
        ).then(res=>{
         //after post is complete, we make a get request to 
         //update all the todos in the screen
-        axios.get("http://localhost:4000/home/", {headers:props.auth_header})
+        axios.get("/home/", {headers:props.auth_header})
         .then(resp=>{props.setList(resp.data.todoList)})
       }).catch(err=>{
-        console.log("aoo cazzo problemi")
         console.log(err.response.data)
         navigate("/err", {state: {err:err.response.data}})
       });

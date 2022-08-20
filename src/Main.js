@@ -19,7 +19,7 @@ function Main(){
 
     useEffect(()=>{
         console.log(state)
-        axios.get("http://localhost:4000/home/", {headers:(state!=null) ? state.headers : null})
+        axios.get("home/", {headers:(state!=null) ? state.headers : null})
     .then(res=>{
         setList(res.data.todoList)
         setName(res.data.name)}).catch(err=>{
