@@ -31,7 +31,7 @@ function Login(){
         }
             setEmail("");
             setPassword("");
-        axios.post((process.env.url+"/user/login"), user).then((res)=>{
+        axios.post(("/user/login"), user).then((res)=>{
             const token = res.data;
             if(token!=null){
                 navigate("/home", {replace: true, state: {headers:{"auth-token":token}}})
