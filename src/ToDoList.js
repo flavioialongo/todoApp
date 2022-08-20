@@ -8,6 +8,7 @@ function ToDoList(props){
                 {props.filteredTodo.map((todo)=>{
                         return (
                             <Todo 
+                             auth_header={props.auth_header}
                              key={todo._id}
                              title={todo.task} 
                              setList = {props.setList} 

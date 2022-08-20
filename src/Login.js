@@ -1,7 +1,9 @@
 import React from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
+
+
 function Login(){
 
     const [email, setEmail] = useState("")
@@ -25,14 +27,19 @@ function Login(){
     function handleSubmit(event){
         event.preventDefault();
         const user = {
-            email: email,
+            email: email.toLowerCase().trim(),
             password: password,
         }
             setEmail("");
             setPassword("");
         axios.post("http://localhost:4000/user/login", user).then((res)=>{
-                
-                navigate("/home")
+            const token = res.data;
+            if(token!=null){
+                navigate("/home", {state: {headers:{"auth-token":token}}})
+            }else{
+                navigate("/err")
+            }
+            
         }).catch(err=>{
             alert(err.response.data);
         });

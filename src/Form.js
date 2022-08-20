@@ -1,10 +1,11 @@
 import React from 'react';
 import {useState} from "react"
 import axios from "axios"
+import {useNavigate} from "react-router-dom"
 function Form(props){
 
     const [inputText, setText] = useState("")
-
+    let navigate = useNavigate();
     function handleChange(event){
         setText(event.target.value)
     }
@@ -13,15 +14,22 @@ function Form(props){
       event.preventDefault()
       if(!(event.target[0].value==="")){
         setText("");
-        axios.post("http://localhost:4000/todo/add",
-       {task: event.target[0].value, completed: false,}
+        let taskClear = event.target[0].value.trim()
+
+        //post to add todo
+        axios.post("http://localhost:4000/home/add",
+       {task: taskClear, completed: false,}, {headers:props.auth_header}
        ).then(res=>{
-        axios.get("http://localhost:4000/todo/")
-        .then(resp=>{props.setList(resp.data)})
-      }).catch(err=>console.log("ERRORE: ", err.response.data));
-    
-        
-      } 
+        //after post is complete, we make a get request to 
+        //update all the todos in the screen
+        axios.get("http://localhost:4000/home/", {headers:props.auth_header})
+        .then(resp=>{props.setList(resp.data.todoList)})
+      }).catch(err=>{
+        console.log("aoo cazzo problemi")
+        console.log(err.response.data)
+        navigate("/err", {state: {err:err.response.data}})
+      });
+    }
   }
 
     return(

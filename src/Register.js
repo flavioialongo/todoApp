@@ -14,28 +14,32 @@ function Register(props){
         let selector = event.target.name
         switch(selector){
             case "firstName": 
-                setFirstName(event.target.value)            
+                setFirstName(event.target.value.trim())            
             break;
             case "lastName": 
-                setLastName(event.target.value)            
+                setLastName(event.target.value.trim())            
             break;
             case "email": 
-                setEmail(event.target.value)            
+                setEmail(event.target.value.trim())            
             break;
             case "password": 
-                setPassword(event.target.value)            
+                setPassword(event.target.value.trim())            
             break;
             default:
                 break;
         }
     }
 
+    function prettyName(name){
+        return name.substring(0,1).toUpperCase()+name.substring(1).toLowerCase();
+    }
+
     function handleSubmit(event){
         event.preventDefault();
         const user = {
-            first_name: firstName,
-            last_name: lastName,
-            email: email,
+            first_name: prettyName(firstName),
+            last_name: prettyName(lastName),
+            email: email.toLowerCase(),
             password: password,
         }
             setFirstName("");
@@ -43,10 +47,9 @@ function Register(props){
             setEmail("");
             setPassword("");
         axios.post("http://localhost:4000/user/register", user).then((res)=>{
-                console.log(res.headers)
+                navigate("/")
         }).catch(err=>{
             alert(err.response.data)
-            
         });
     }
     /// POSSO CREARE VARIABILI H3 CHE DANNO IL MESSAGGIO
@@ -55,8 +58,8 @@ function Register(props){
             <header>Register</header>
             <form onSubmit={handleSubmit} style={{"display": "flex", "flexDirection": "column"}}>
             <div style={{"display": "flex", alignContent: "center", justifyContent: "center"}}>
-                <input style={{"margin": "0 2% 0 0"}} value={firstName} type="text" pattern = "[A-Z]*[a-z]+" className="register-firstname" name="firstName" placeholder="First Name" onChange = {handleChange} required={true}/>
-                <input style={{"margin": "0 0 0 2%"}} value={lastName} type="text" pattern = "[A-Z]*[a-z]+" className="register-lastname" name="lastName" placeholder="Last Name" onChange = {handleChange} required={true}/>
+                <input style={{"margin": "0 2% 0 0"}} value={firstName} type="text" pattern = " *[A-Z]*[a-z]+ *" className="register-firstname" name="firstName" placeholder="First Name" onChange = {handleChange} required={true}/>
+                <input style={{"margin": "0 0 0 2%"}} value={lastName} type="text" pattern = " *[A-Z]*[a-z]+ *" className="register-lastname" name="lastName" placeholder="Last Name" onChange = {handleChange} required={true}/>
             </div>
             <div style={{"display": "flex", alignContent: "center", justifyContent: "center"}}>
                 <input style={{"margin": "5% 2% 2% 0"}} value={email} type="email" className="register-email" name="email" placeholder="Email" onChange = {handleChange} required={true}/>

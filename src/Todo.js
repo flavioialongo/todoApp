@@ -2,17 +2,15 @@ import React from 'react';
 import axios from "axios"
 function Todo(props) {
   function removeTodo(id){
-    const uri = "http://localhost:4000/todo/"+id;
-    
-    axios.delete(uri).then(()=>props.setList(props.todoList.filter(x=>x._id!==props.todo._id)));
+    const uri = "http://localhost:4000/home/"+id;
+    axios.delete(uri, {headers:props.auth_header}).then(()=>props.setList(props.todoList.filter(x=>x._id!==props.todo._id)));
   }
   function addComplete(id){
-    const uri = "http://localhost:4000/todo/update/"+id;
-    
+    const uri = "http://localhost:4000/home/update/"+id;
     axios.post(uri, {
       task: props.todo.task,
       completed: !(props.todo.completed)
-    }).then(()=>props.setList(props.todoList.map(x=>{
+    }, {headers:props.auth_header}).then(()=>props.setList(props.todoList.map(x=>{
       if(x._id===id){
         return {...x, completed: !x.completed}
       }else{
