@@ -1,7 +1,10 @@
 const router = require("express").Router()
 let User = require("../models/user.model")
 const {loginValidation, registerValidation} = require("../validation")
-const bcrypt = require("bcryptjs")
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken")
+
+
 router.route("/register").post(async (req,res)=>{
     const result = registerValidation(req.body);
     if(result.error!=null){
@@ -20,12 +23,32 @@ router.route("/register").post(async (req,res)=>{
                 password : hashPassword,
                 });
             try{
-                newUser.save().then((savedUser)=>res.send({user: savedUser._id}));
+                newUser.save().then((savedUser)=>res.send(savedUser._id));
             }catch (err){
                 res.status(400).send(err);
             }
     }
     
 });
-
+router.route("/login").post(async (req,res)=>{
+    
+    const result = loginValidation(req.body);
+    if(result.error!=null){
+        res.status(400).send(result.error.details[0].message);
+    }
+    const user = await User.findOne({email:req.body.email});
+    
+    if(!user){
+        return res.status(400).send("User does not exist! ")
+    }
+    //validate password
+    const validPassword = await bcrypt.compare(req.body.password, user.password);
+    
+    if(!validPassword){
+        res.status(400).send("Invalid password!");
+    }
+    
+    const token = jwt.sign({_id: user._id}, process.env.SECRET_KEY);
+    res.header('Authorization', token);
+})
 module.exports = router;

@@ -13,7 +13,7 @@ const [filteredTodo, setFilteredTodo]=useState([]);
 
 
 useEffect(()=>{
-    axios.get("http://localhost:4000/todo/")
+    axios.get("http://localhost:4000/home/")
     .then(res=>setList(res.data)).catch(err=>console.log(err.response.data))
 }, []);
 

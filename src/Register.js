@@ -38,9 +38,16 @@ function Register(props){
             email: email,
             password: password,
         }
+            setFirstName("");
+            setLastName("");
+            setEmail("");
+            setPassword("");
         axios.post("http://localhost:4000/user/register", user).then((res)=>{
-                console.log("success!", res.data);
-        }).catch(err=>console.log(err));
+                console.log(res.headers)
+        }).catch(err=>{
+            alert(err.response.data)
+            
+        });
     }
     /// POSSO CREARE VARIABILI H3 CHE DANNO IL MESSAGGIO
     return(
@@ -48,12 +55,12 @@ function Register(props){
             <header>Register</header>
             <form onSubmit={handleSubmit} style={{"display": "flex", "flexDirection": "column"}}>
             <div style={{"display": "flex", alignContent: "center", justifyContent: "center"}}>
-                <input style={{"margin": "0 2% 0 0"}} type="text" pattern = "[A-Z]*[a-z]+" className="register-firstname" name="firstName" placeholder="First Name" onChange = {handleChange} required={true}/>
-                <input style={{"margin": "0 0 0 2%"}} type="text" pattern = "[A-Z]*[a-z]+" className="register-lastname" name="lastName" placeholder="Last Name" onChange = {handleChange} required={true}/>
+                <input style={{"margin": "0 2% 0 0"}} value={firstName} type="text" pattern = "[A-Z]*[a-z]+" className="register-firstname" name="firstName" placeholder="First Name" onChange = {handleChange} required={true}/>
+                <input style={{"margin": "0 0 0 2%"}} value={lastName} type="text" pattern = "[A-Z]*[a-z]+" className="register-lastname" name="lastName" placeholder="Last Name" onChange = {handleChange} required={true}/>
             </div>
             <div style={{"display": "flex", alignContent: "center", justifyContent: "center"}}>
-                <input style={{"margin": "5% 2% 2% 0"}} type="email" className="register-email" name="email" placeholder="Email" onChange = {handleChange} required={true}/>
-                <input style={{"margin": "5% 0 2% 2%"}} type="password" className="register-password" min="6" name="password" placeholder="Password" onChange = {handleChange} required={true}/>
+                <input style={{"margin": "5% 2% 2% 0"}} value={email} type="email" className="register-email" name="email" placeholder="Email" onChange = {handleChange} required={true}/>
+                <input style={{"margin": "5% 0 2% 2%"}} value={password} type="password" className="register-password" min="6" name="password" placeholder="Password" onChange = {handleChange} required={true}/>
             </div>
             <button className="todo-button" type="submit">Sign up</button>
             </form>

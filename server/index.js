@@ -10,7 +10,7 @@ const userRouter = require("./routes/user")
 
 app.use(cors())
 app.use(express.json())
-app.use("/todo", todoRouter);
+app.use("/home/", todoRouter);
 app.use("/user", userRouter);
 
 const db_uri = process.env.DB_URI;
