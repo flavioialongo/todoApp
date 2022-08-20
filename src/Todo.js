@@ -2,11 +2,11 @@ import React from 'react';
 import axios from "axios"
 function Todo(props) {
   function removeTodo(id){
-    const uri = "/home/"+id;
+    const uri = process.env.url+"/home/"+id;
     axios.delete(uri, {headers:props.auth_header}).then(()=>props.setList(props.todoList.filter(x=>x._id!==props.todo._id)));
   }
   function addComplete(id){
-    const uri = "/home/update/"+id;
+    const uri = process.env.url + "/home/update/"+id;
     axios.post(uri, {
       task: props.todo.task,
       completed: !(props.todo.completed)

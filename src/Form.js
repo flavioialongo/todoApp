@@ -17,7 +17,7 @@ function Form(props){
         let taskClear = event.target[0].value.trim()
 
         //post to add todo
-        axios.post("/home/add",
+        axios.post((process.env.url+"/home/add"),
        {task: taskClear, completed: false,}, {headers:props.auth_header}
        ).then(res=>{
         //after post is complete, we make a get request to 
