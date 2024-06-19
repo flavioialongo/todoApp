@@ -1,5 +1,5 @@
 ## What does the app do?
-Just a simple To-do app. 
+Just a simple and ugly To-do app. 
 
 ## What technologies did I use?
 I just wanted to learn a bit more about JavaScript, React in particular. 
